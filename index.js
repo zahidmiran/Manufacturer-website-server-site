@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.plyz6.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
@@ -75,6 +75,8 @@ async function run() {
       })
   
       /* Add a Review */
+      /* Add a Review */
+      
       app.post('/addReview', async (req, res) => {
         const data = req.body;
         const result = await reviewCollection.insertOne(data);
@@ -300,7 +302,7 @@ async function run() {
         const booking = await partsCollection.findOne(filter);
         res.send(booking);
       })
-  
+
       /* purchease a booking or post a booking */
       app.post('/purchase', async (req, res) => {
         const purchase = req.body;
@@ -308,7 +310,6 @@ async function run() {
         //   const exist = await booking
         const result = await purchaseCollection.insertOne(purchase);
         console.log(result)
-        sendToolsPurchaseEmail(purchase)
         return res.send({ success: true, result });
       })
   
