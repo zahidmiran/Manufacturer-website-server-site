@@ -109,14 +109,7 @@ async function run() {
         }
       }
   
-      // /* create user profil */
-      // app.post('/createProfile', async (req, res) => {
-      //   const data = req.body;
-      //   const result = await profileCollection.insertOne(data);
-      //   res.send(result);
-      //   console.log(result)
-      // })
-  
+     
       app.put('/createProfile/:email', async (req, res) => {
         const email = req.params.email;
         console.log(email)
